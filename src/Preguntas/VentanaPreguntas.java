@@ -1,7 +1,7 @@
 package Preguntas;
 
-import Preguntas.ClaseRespuestas;
-import java.awt.EventQueue;
+
+//import java.awt.EventQueue;
 import javax.swing.JOptionPane;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
-import Preguntas.ClasePreguntas;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -26,17 +25,21 @@ public class VentanaPreguntas extends JFrame {
 	
 	VentanaPreguntas frame= new VentanaPreguntas();
 	frame.setVisible(true);
-	
-	
-	
 	}
+	
 	int intPosicion=0;
-	ClaseRespuestas unaRespuesta = new ClaseRespuestas ();
-	ClasePreguntas unaPregunta = new ClasePreguntas();
+	String [] Preguntas= {
+			"Java fue desarrollado por: "
+			,"Oracle libera versiones de JAVA cada:"
+			,"Ciclo en el cual se sabe el numero de iteraciones"
+			,"Variable de entorno que indica donde estan los archivos ejecutables"
+			,"Selecciona la opcion por la cual no es un sinonimo de clase"	
+			};
+	String [] Respuestas = {
+			"Sun","Cada 6 meses","For","Path","Objeto"};
+	
 	Object [] Seleccion= {"","","","","",""};	
-	
-	String [] OpcionesRad= unaRespuesta.setRespuestas(intPosicion);
-	
+
 	public VentanaPreguntas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -54,7 +57,7 @@ public class VentanaPreguntas extends JFrame {
 		lblPreguntaCuestionario.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblPreguntaCuestionario.setBounds(10, 49, 416, 48);
 		contentPane.add(lblPreguntaCuestionario);
-		lblPreguntaCuestionario.setText(unaPregunta.getPregunta(intPosicion)); 
+		lblPreguntaCuestionario.setText(Preguntas[0]); 
 		
 		JRadioButton rad1 = new JRadioButton("Opcion 1");
 		rad1.addActionListener(new ActionListener() {
@@ -100,14 +103,10 @@ public class VentanaPreguntas extends JFrame {
 		radOpciones.add(rad2);
 		radOpciones.add(rad3);
 		radOpciones.add(rad4);
-		
-		String [] OpcionesRad= unaRespuesta.setRespuestas(intPosicion);
-		radOpciones.clearSelection();
-		rad1.setText(OpcionesRad[0]);
-		rad2.setText(OpcionesRad[1]);
-		rad3.setText(OpcionesRad[2]);
-		rad4.setText(OpcionesRad[3]);
-		rad1.requestFocus();
+		rad1.setText("Oracle");
+		rad2.setText("Sun");
+		rad3.setText("Apache");
+		rad4.setText("Ecplise");
 		JButton btnSiguiente = new JButton("Siguiente");
 		JButton btnAnterios = new JButton("Anterior");
 		btnAnterios.addMouseListener(new MouseAdapter() {
@@ -117,17 +116,38 @@ public class VentanaPreguntas extends JFrame {
 					//btnSiguiente.setEnabled(true);
 				}
 				intPosicion--;
-				if(intPosicion>-1) {
-					lblPreguntaCuestionario.setText(unaPregunta.getPregunta(intPosicion));
-					String [] OpcionesRad= unaRespuesta.setRespuestas(intPosicion);
+					lblPreguntaCuestionario.setText(Preguntas[intPosicion]);
 					radOpciones.clearSelection();
-					rad1.setText(OpcionesRad[0]);
-					rad2.setText(OpcionesRad[1]);
-					rad3.setText(OpcionesRad[2]);
-					rad4.setText(OpcionesRad[3]);
-					rad1.requestFocus();
-					
-				}
+					if(intPosicion==0) {
+						rad1.setText("Oracle");
+						rad2.setText("Sun");
+						rad3.setText("Apache");
+						rad4.setText("Ecplise");
+					}
+					if(intPosicion==1) {
+						rad1.setText("Cada año");
+						rad2.setText("Cada mes");
+						rad3.setText("Cada 6 meses");
+						rad4.setText("Cada 3 meses");
+					}
+					if(intPosicion==2) {
+						rad1.setText("For");
+						rad2.setText("While");
+						rad3.setText("Do-While");
+						rad4.setText("Foreach");
+					}
+					if(intPosicion==3) {
+						rad1.setText("ClassPath");
+						rad2.setText("Path");
+						rad3.setText("Java_Home");
+						rad4.setText("String");
+					}if(intPosicion==4) {
+						rad1.setText("Modelo");
+						rad2.setText("Plantilla");
+						rad3.setText("Modelo");
+						rad4.setText("Objeto");
+					}
+				
 			}
 		});
 		btnAnterios.setBounds(318, 138, 85, 21);
@@ -139,17 +159,41 @@ public class VentanaPreguntas extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				 if(intPosicion==0) {btnAnterios.setEnabled(true);}
 				 if(intPosicion==3) {btnSiguiente.setEnabled(false);} 
-				if (intPosicion<5) {
+			     if (intPosicion<5) {
 					intPosicion++;
-					lblPreguntaCuestionario.setText(unaPregunta.getPregunta(intPosicion));
-					String [] OpcionesRad= unaRespuesta.setRespuestas(intPosicion);
+					lblPreguntaCuestionario.setText(Preguntas[intPosicion]);
 					radOpciones.clearSelection();
-					rad1.setText(OpcionesRad[0]);
-					rad2.setText(OpcionesRad[1]);
-					rad3.setText(OpcionesRad[2]);
-					rad4.setText(OpcionesRad[3]);
-					rad1.requestFocus();
+					if(intPosicion==0) {
+						rad1.setText("Oracle");
+						rad2.setText("Sun");
+						rad3.setText("Apache");
+						rad4.setText("Ecplise");
+					}
+					if(intPosicion==1) {
+						rad1.setText("Cada año");
+						rad2.setText("Cada mes");
+						rad3.setText("Cada 6 meses");
+						rad4.setText("Cada 3 meses");
+					}
+					if(intPosicion==2) {
+						rad1.setText("For");
+						rad2.setText("While");
+						rad3.setText("Do-While");
+						rad4.setText("Foreach");
+					}
+					if(intPosicion==3) {
+						rad1.setText("ClassPath");
+						rad2.setText("Path");
+						rad3.setText("Java_Home");
+						rad4.setText("String");
+					}if(intPosicion==4) {
+						rad1.setText("Modelo");
+						rad2.setText("Plantilla");
+						rad3.setText("Modelo");
+						rad4.setText("Objeto");
+					}
 				}
+			
 			}
 		});
 		btnSiguiente.setBounds(318, 167, 85, 21);
@@ -162,7 +206,7 @@ public class VentanaPreguntas extends JFrame {
 			
 				int intCalificacion=0;
 				for(int i=0;i<5;i++) {
-					if(Seleccion[i].equals(unaRespuesta.getRespuestas(i))) {
+					if(Seleccion[i].equals(Respuestas[i])) {
 						intCalificacion=intCalificacion+20;
 					}
 				}
