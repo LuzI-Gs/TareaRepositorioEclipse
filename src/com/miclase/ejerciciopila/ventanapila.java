@@ -57,7 +57,7 @@ public class ventanapila extends JFrame {
 							else
 								
 							{
-								ExpresionPila.push("(");break;}
+								ExpresionPila.push(")");break;}
 							}
 						}
 					if(ExpresionPila.empty()) {JOptionPane.showMessageDialog(contentPane,"La expresion esta correcta");}
