@@ -1,4 +1,7 @@
-package com.miclase.barradeprogreso;
+package ejercicioHiloyBarra;
+
+
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -7,19 +10,21 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class barradeprogreso extends JFrame {
+public class BarraYHilo extends JFrame {
 
 	private JPanel contentPane;
-    public JProgressBar jprBarraProgreso;
+
 	public static void main(String[] args) {
 		 
-		barradeprogreso frame= new barradeprogreso();
+		BarraYHilo frame= new BarraYHilo();
 		frame.setVisible(true);
-		
+			
 	}
 
-	 
-	public barradeprogreso() {
+	/**
+	 * Create the frame.
+	 */
+	public BarraYHilo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -27,24 +32,23 @@ public class barradeprogreso extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JProgressBar jprBarraProgreso = new JProgressBar();
-		jprBarraProgreso.setBounds(59, 48, 276, 35);
-		contentPane.add(jprBarraProgreso);
+		JProgressBar jprBarra = new JProgressBar();
+		jprBarra.setBounds(112, 45, 230, 33);
+		contentPane.add(jprBarra);
 		
 		JButton btnInicio = new JButton("Iniciar");
 		btnInicio.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
 				Thread hilo = new Thread() {
 					public void run() {
-						jprBarraProgreso.setStringPainted(true);
+						jprBarra.setStringPainted(true);
 						
 						try {
 							for(int i=0;i<=100;i++) {
 								
 								
-								jprBarraProgreso.setValue(i);
+								jprBarra.setValue(i);
 								Thread.sleep(150);
 								
 							                        } 
@@ -54,10 +58,9 @@ public class barradeprogreso extends JFrame {
 					}
 				};
 				hilo.start(); 
-
 			}
 		});
-		btnInicio.setBounds(25, 191, 85, 21);
+		btnInicio.setBounds(35, 144, 85, 21);
 		contentPane.add(btnInicio);
 		
 		JButton btnSalir = new JButton("Salir");
@@ -67,9 +70,7 @@ public class barradeprogreso extends JFrame {
 				System.exit(0);
 			}
 		});
-		btnSalir.setBounds(152, 191, 85, 21);
+		btnSalir.setBounds(178, 144, 85, 21);
 		contentPane.add(btnSalir);
 	}
-	
-	
-   }
+}
